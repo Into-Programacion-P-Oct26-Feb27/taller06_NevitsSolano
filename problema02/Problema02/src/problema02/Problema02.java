@@ -14,9 +14,6 @@ import java.util.Scanner;
  */
 public class Problema02 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
         Scanner entrada = new Scanner(System.in);
@@ -34,42 +31,46 @@ public class Problema02 {
 
         System.out.println("PEAJE BUENA VÍA");
 
-        System.out.print("Ingrese el nombre del propietario: ");
+        System.out.println("Ingrese el nombre del propietario:");
         propietario = entrada.nextLine();
 
-        System.out.println("TIPOS DE VEHÍCULOS");
-        System.out.println("1. Vehículo liviano particular");
-        System.out.println("2. Vehículo grande particular");
-        System.out.println("3. Taxi");
-        System.out.println("4. Bus urbano");
+        System.out.println("TIPOS DE VEHÍCULOS\n"
+                + "1. Vehículo liviano particular\n"
+                + "2. Vehículo grande particular\n"
+                + "3. Taxi\n"
+                + "4. Bus urbano");
 
-        System.out.print("Ingrese el tipo de vehículo: ");
+        System.out.println("Ingrese el tipo de vehículo:");
         tipo = entrada.nextInt();
 
         if (tipo >= 1 && tipo <= 4) {
 
-            System.out.print("Ingrese el avalúo comercial: ");
+            System.out.println("Ingrese el avalúo comercial:");
             avaluo = entrada.nextDouble();
 
             if (tipo == 1) {
                 descripcion = "Vehículo liviano particular";
                 porcentaje = 0.01;
                 valorFijo = 2.00;
-            } else if (tipo == 2) {
-                descripcion = "Vehículo grande particular";
-                porcentaje = 0.02;
-                valorFijo = 2.50;
-            } else if (tipo == 3) {
-                descripcion = "Taxi";
-                porcentaje = 0.04;
-                valorFijo = 1.50;
             } else {
-                descripcion = "Bus urbano";
-                porcentaje = 0.05;
-                valorFijo = 2.20;
+                if (tipo == 2) {
+                    descripcion = "Vehículo grande particular";
+                    porcentaje = 0.02;
+                    valorFijo = 2.50;
+                } else {
+                    if (tipo == 3) {
+                        descripcion = "Taxi";
+                        porcentaje = 0.04;
+                        valorFijo = 1.50;
+                    } else {
+                        descripcion = "Bus urbano";
+                        porcentaje = 0.05;
+                        valorFijo = 2.20;
+                    }
+                }
             }
 
-            valorBase = (avaluo * porcentaje / 100) + valorFijo;
+            valorBase = (avaluo * porcentaje) / 100 + valorFijo;
 
             if (tipo == 1 || tipo == 2) {
                 if (avaluo > 30000) {
@@ -79,13 +80,19 @@ public class Problema02 {
 
             total = valorBase + recargo;
 
-            System.out.println("\nPEAJE \"Buena Vía\"");
-            System.out.println("Propietario: " + propietario);
-            System.out.println("Tipo: " + descripcion);
-            System.out.printf("Avalúo: $%.2f%n", avaluo);
-            System.out.printf("Valor base del peaje: $%.2f%n", valorBase);
-            System.out.printf("Recargo: $%.2f%n", recargo);
-            System.out.printf("Total a cancelar: $%.2f%n", total);
+            System.out.printf("Peaje \"Buena Vía\"\n"
+                    + "Propietario: %s\n"
+                    + "Tipo: %s\n"
+                    + "Avalúo: $%.2f\n"
+                    + "Valor base del peaje: $%.2f\n"
+                    + "Recargo: $%.2f\n\n"
+                    + "Total a cancelar: $%.2f\n",
+                    propietario,
+                    descripcion,
+                    avaluo,
+                    valorBase,
+                    recargo,
+                    total);
 
         } else {
             System.out.println("El tipo de vehículo no es válido.");

@@ -14,37 +14,34 @@ import java.util.Scanner;
  */
 public class Problema01SoluciónA {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
         Scanner entrada = new Scanner(System.in);
         entrada.useLocale(Locale.US);
 
+        int opcion;
         double numero1;
         double numero2;
         double resultado;
-        int opcion;
         String operacion;
 
-        System.out.println("OPERACIONES ARITMÉTICAS");
-        System.out.println("1. Suma");
-        System.out.println("2. Resta");
-        System.out.println("3. Multiplicación");
-        System.out.println("4. División");
-        System.out.println("5. Módulo");
-        System.out.println("6. Potencia");
+        System.out.println("OPERACIONES ARITMÉTICAS\n"
+                + "1. Suma\n"
+                + "2. Resta\n"
+                + "3. Multiplicación\n"
+                + "4. División\n"
+                + "5. Módulo\n"
+                + "6. Potencia");
 
-        System.out.print("Seleccione una operación: ");
+        System.out.println("Seleccione una operación:");
         opcion = entrada.nextInt();
 
         if (opcion >= 1 && opcion <= 6) {
 
-            System.out.print("Ingrese el primer número: ");
+            System.out.println("Ingrese el primer número:");
             numero1 = entrada.nextDouble();
 
-            System.out.print("Ingrese el segundo número: ");
+            System.out.println("Ingrese el segundo número:");
             numero2 = entrada.nextDouble();
 
             if (numero1 > numero2) {
@@ -56,34 +53,45 @@ public class Problema01SoluciónA {
                     if (opcion == 1) {
                         resultado = numero1 + numero2;
                         operacion = "Suma";
-                    } else if (opcion == 2) {
-                        resultado = numero1 - numero2;
-                        operacion = "Resta";
-                    } else if (opcion == 3) {
-                        resultado = numero1 * numero2;
-                        operacion = "Multiplicación";
-                    } else if (opcion == 4) {
-                        resultado = numero1 / numero2;
-                        operacion = "División";
-                    } else if (opcion == 5) {
-                        resultado = numero1 % numero2;
-                        operacion = "Módulo";
                     } else {
-                        resultado = Math.pow(numero1, numero2);
-                        operacion = "Potencia";
+                        if (opcion == 2) {
+                            resultado = numero1 - numero2;
+                            operacion = "Resta";
+                        } else {
+                            if (opcion == 3) {
+                                resultado = numero1 * numero2;
+                                operacion = "Multiplicación";
+                            } else {
+                                if (opcion == 4) {
+                                    resultado = numero1 / numero2;
+                                    operacion = "División";
+                                } else {
+                                    if (opcion == 5) {
+                                        resultado = numero1 % numero2;
+                                        operacion = "Módulo";
+                                    } else {
+                                        resultado = Math.pow(numero1, numero2);
+                                        operacion = "Potencia";
+                                    }
+                                }
+                            }
+                        }
                     }
 
-                    System.out.println("\nOPERACIONES ARITMÉTICAS");
-                    System.out.println("Primer número: " + numero1);
-                    System.out.println("Segundo número: " + numero2);
-                    System.out.println("Operación seleccionada: " + operacion);
-                    System.out.println("Resultado: " + resultado);
-
+                    System.out.printf("OPERACIONES ARITMÉTICAS\n\n"
+                            + "Primer número: %.2f\n"
+                            + "Segundo número: %.2f\n"
+                            + "Operación seleccionada: %s\n\n"
+                            + "Resultado: %.2f\n",
+                            numero1,
+                            numero2,
+                            operacion,
+                            resultado);
                 }
 
             } else {
-                System.out.println("No es posible realizar la operación.");
-                System.out.println("El primer número debe ser mayor que el segundo.");
+                System.out.println("No es posible realizar la operación solicitada."
+                        + " El primer número debe ser mayor que el segundo.");
             }
 
         } else {
